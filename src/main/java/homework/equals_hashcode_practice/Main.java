@@ -34,7 +34,8 @@ public class Main {
                 + practice.overriddenEquals(order1, order2));
 
         Waiter waiter1 = new Waiter("Vitalik", 5, 32);
-        Waiter waiter2 = new Waiter("Vitalik", 5, 32);
+        Waiter waiter2 =  new Waiter("Vitalik", 5, 32);
+
         System.out.println("NonOverriddenEquals\n Are object equal? " + practice.nonOverriddenEquals(waiter1, waiter2));
     }
 }

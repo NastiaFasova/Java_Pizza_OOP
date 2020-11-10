@@ -1,39 +1,62 @@
 package homework;
 
+import homework.exception.NotEnoughExperienceException;
 import homework.exception.WrongOrderException;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
+@ToString
+@Getter
+@Setter
 public class Waiter extends Employee<Order> {
 
-    public Waiter(String name, double experience, int age) {
+    private List<Order> orders = new ArrayList<>();
+
+    public Waiter(String name, double experience, int age, List<Order> orders)
+            throws NotEnoughExperienceException {
         super(name, experience, age);
+        this.orders = orders;
+    }
+
+    public Waiter(String name, double experience, int age) throws NotEnoughExperienceException {
+        super(name, experience, age);
+    }
+
+    public List<Order> work(List<Order> orders) {
+        for (Order order : orders) {
+            List<Pizza> pizzas = order.getPizza();
+            Iterator<Pizza> iterator = pizzas.iterator();
+            while (iterator.hasNext()) {
+                Pizza pizza = iterator.next();
+                if (pizza.getSize() < 10) {
+                    // використання власного WrongOrderException та обробка помилка в блоці try-catch-finally
+                    throw new WrongOrderException("The size of pizza is too small..." +
+                            "Enter the size more than 10 the next time...");
+                }
+            }
+        }
+        System.out.println("The order was done");
+        return orders;
     }
 
     //Метод, який імітує взяття замовлення офіціантом
     @Override
     public Order work(Order order) {
-        Scanner scanner = new Scanner(System.in);
         List<Pizza> pizzas = order.getPizza();
         Iterator<Pizza> iterator = pizzas.iterator();
         while (iterator.hasNext()) {
             Pizza pizza = iterator.next();
-            System.out.println("\nAnswer the waiter: ");
-            System.out.println("What is the size of pizza you'd like? ");
-            double size = scanner.nextDouble();
-            if (size < 10) {
+            if (pizza.getSize() < 10) {
                 // використання власного WrongOrderException та обробка помилка в блоці try-catch-finally
-                try {
-                    throw new WrongOrderException("The size of pizza is too small...");
-                } catch (WrongOrderException e) {
-                    e.printStackTrace();
-                } finally {
-                    System.out.println("Enter the size more than 10 the next time...");
-                }
+                throw new WrongOrderException("The size of pizza is too small..." +
+                        "Enter the size more than 10 the next time...");
             }
-            pizza.setSize(size);
         }
         System.out.println("The order was done");
         return order;

@@ -7,7 +7,7 @@ public abstract class Employee<T> {
     private double experience;
     private int age;
 
-    public Employee(String name, double experience, int age) {
+    public Employee(String name, double experience, int age) throws NotEnoughExperienceException {
         // використання власного NotEnoughExperienceException
         // Exception наслідується від RuntimeException, тому його обробляти не обов'язково
         if (experience < 2) {
@@ -16,6 +16,9 @@ public abstract class Employee<T> {
         this.name = name;
         this.experience = experience;
         this.age = age;
+    }
+
+    public Employee() {
     }
 
     public T work(T commitment){

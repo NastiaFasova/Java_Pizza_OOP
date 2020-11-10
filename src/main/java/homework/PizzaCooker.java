@@ -1,5 +1,14 @@
 package homework;
 
+import homework.exception.NotEnoughExperienceException;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class PizzaCooker extends Employee<Pizza> {
     private static final double MAX_PRICE = 250;
     private static final double UPPER_INTERMEDIATE_PRICE = 220;
@@ -8,10 +17,27 @@ public class PizzaCooker extends Employee<Pizza> {
     private static final double BEGINNER_PRICE = 150;
     private static final double MIN_PRICE = 100;
     private static final double STANDARD_SIZE = 30;
+    private List<Pizza> pizzas = new ArrayList<>();
 
-    public PizzaCooker(String name, double experience, int age) {
+    public PizzaCooker(String name, double experience, int age, List<Pizza> pizzas)
+            throws NotEnoughExperienceException {
+        super(name, experience, age);
+        this.pizzas = pizzas;
+    }
+
+    public PizzaCooker(String name, double experience, int age)
+            throws NotEnoughExperienceException {
         super(name, experience, age);
     }
+
+    public List<Pizza> work(List<Pizza> pizzas) {
+        for (Pizza pizza : pizzas) {
+            setPrice(pizza);
+        }
+        System.out.println("\nThe pizzas have been cooked. Info about them: ");
+        return pizzas;
+    }
+
 
     @Override
     public Pizza work(Pizza pizza) {

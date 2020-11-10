@@ -4,11 +4,6 @@ import homework.Filling;
 import homework.Order;
 import homework.Pizza;
 import homework.Waiter;
-import homework.enums.Cheese;
-import homework.enums.Meat;
-import homework.enums.Vegetables;
-
-import java.util.List;
 
 public class EqualsHashcodePractice {
     /*Викликаємо неперевизначений метод hashcode() класу

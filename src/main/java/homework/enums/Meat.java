@@ -1,5 +1,8 @@
 package homework.enums;
 
+import lombok.ToString;
+
+@ToString
 public enum Meat {
     CHICKEN(150), SAUSAGES;
     private double calories;
@@ -9,13 +12,6 @@ public enum Meat {
     }// конструктор із  додатковим параметром - калорійність
 
     Meat() {
-    }
-
-    @Override
-    public String toString() {
-        return "Meat{" +
-                "calories=" + calories +
-                "} " + super.toString();
     }
 
     public static String showMeatEnum() {// власний метод для того, щоб не використовувати конкатенацію строк
@@ -31,6 +27,6 @@ public enum Meat {
                 stringBuilder.append(meat);
             }
         }
-        return stringBuilder.substring(0, stringBuilder.length() - 2);
+        return stringBuilder.substring(0, stringBuilder.length()  - 1);
     }
 }

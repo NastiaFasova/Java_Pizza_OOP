@@ -1,5 +1,8 @@
 package homework.enums;
 
+import lombok.ToString;
+
+@ToString
 public enum Cheese {
     MOZZARELLA(220), PARMESAN(230), BRYNZA(250);
     private double calories;
@@ -9,13 +12,6 @@ public enum Cheese {
     }// конструктор із  додатковим параметром - калорійність
 
     Cheese() {
-    }
-
-    @Override
-    public String toString() {
-        return "Cheese{" +
-                "calories=" + calories +
-                "} " + super.toString();
     }
 
     public static String showCheeseEnum() {// власний метод для того, щоб не використовувати конкатенацію строк

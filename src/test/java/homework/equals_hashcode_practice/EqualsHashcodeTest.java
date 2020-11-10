@@ -7,6 +7,7 @@ import homework.Waiter;
 import homework.enums.Cheese;
 import homework.enums.Meat;
 import homework.enums.Vegetables;
+import homework.exception.NotEnoughExperienceException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -40,7 +41,7 @@ public class EqualsHashcodeTest {
     }
 
     @Test
-    public void testNonOverriddenEquals() {
+    public void testNonOverriddenEquals() throws NotEnoughExperienceException {
         Waiter waiter1 = new Waiter("Vitalik", 5, 32);
         Waiter waiter2 = new Waiter("Vitalik", 5, 32);
         Assert.assertFalse(practice.nonOverriddenEquals(waiter1, waiter2));

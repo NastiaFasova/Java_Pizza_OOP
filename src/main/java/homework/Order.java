@@ -1,7 +1,12 @@
 package homework;
 
+import lombok.Getter;
+import lombok.ToString;
+
 import java.util.List;
 
+@Getter
+@ToString
 public class Order {
     private int amount;
     private List<Pizza> pizza;
@@ -9,14 +14,6 @@ public class Order {
     public Order(List<Pizza> pizza) {
         this.pizza = pizza;
         this.amount = pizza.size();
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public List<Pizza> getPizza() {
-        return pizza;
     }
 
     @Override
@@ -28,13 +25,5 @@ public class Order {
 
         if (amount != order.amount) return false;
         return pizza != null ? pizza.equals(order.pizza) : order.pizza == null;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "amount=" + amount +
-                ", pizza=" + pizza +
-                '}';
     }
 }
